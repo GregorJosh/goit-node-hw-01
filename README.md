@@ -1,4 +1,7 @@
-# Simple contacts manager in Node.JS
+# Simple contacts manager in Node.JS  
+  
+Functions:  
+
 
 
 - Listing contacts  
