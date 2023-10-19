@@ -1,8 +1,8 @@
-const fs = require("fs").promises;
-const path = require("path");
-const { nanoid } = require("nanoid");
+import { promises as fs } from "fs";
+import path from "path";
+import { nanoid } from "nanoid";
 
-const contactsPath = path.win32.join(__dirname, "db", "contacts.json");
+const contactsPath = path.join(process.cwd(), "db", "contacts.json");
 
 async function getContacts() {
   try {
@@ -14,11 +14,11 @@ async function getContacts() {
   }
 }
 
-async function listContacts() {
+export async function listContacts() {
   return await getContacts();
 }
 
-async function getContactById(contactId) {
+export async function getContactById(contactId) {
   const contacts = await getContacts();
 
   for (const contact of contacts) {
@@ -30,7 +30,7 @@ async function getContactById(contactId) {
   return null;
 }
 
-function removeContact(contactId) {
+export function removeContact(contactId) {
   getContacts().then((contacts) => {
     const filteredContacts = contacts.filter(
       (contact) => contact.id !== contactId
@@ -40,7 +40,7 @@ function removeContact(contactId) {
   });
 }
 
-async function addContact(name, email, phone) {
+export async function addContact(name, email, phone) {
   getContacts().then((contacts) => {
     
     for (const contact of contacts) {
@@ -59,8 +59,3 @@ async function addContact(name, email, phone) {
     fs.writeFile(contactsPath, JSON.stringify(contacts));
   });
 }
-
-exports.listContacts = listContacts;
-exports.getContactById = getContactById;
-exports.removeContact = removeContact;
-exports.addContact = addContact;
