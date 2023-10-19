@@ -1,4 +1,5 @@
 import { Command } from "commander";
+import colors from "colors";
 
 import {
   getContactById,
@@ -32,7 +33,7 @@ async function invokeAction({ action, id, name, email, phone }) {
         return;
       }
 
-      console.error("\nThere is no contact with id " + id);
+      console.error(("\nThere is no contact with id " + id).red);
       break;
     case "add":
       try {
@@ -47,7 +48,7 @@ async function invokeAction({ action, id, name, email, phone }) {
 
       break;
     default:
-      console.warn("Unknknown action type!");
+      console.warn("Unknknown action type!".red);
   }
 }
 
