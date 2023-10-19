@@ -29,6 +29,7 @@ async function invokeAction({ action, id, name, email, phone }) {
 
       if (contact) {
         console.table(contact);
+        return;
       }
 
       console.error("\nThere is no contact with id " + id);
